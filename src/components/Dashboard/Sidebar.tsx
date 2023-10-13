@@ -13,6 +13,7 @@ interface IProps {
   addInputField: any;
   updateInputFields: any;
   editInputFields: any;
+  removeInputFields: any;
   handleInputChange: any;
   navigateToScreen: any;
 }
@@ -267,6 +268,17 @@ const Sidebar: React.FC<IProps> = (props: IProps) => {
                               >
                                 <i
                                   className="fa fa-pencil"
+                                  aria-hidden="true"
+                                ></i>
+                              </button>
+                              <button
+                                className="btn btn-outline-danger remove-btn"
+                                onClick={(evnt) =>
+                                  props.removeInputFields(index, evnt)
+                                }
+                              >
+                                <i
+                                  className="fa fa-times"
                                   aria-hidden="true"
                                 ></i>
                               </button>

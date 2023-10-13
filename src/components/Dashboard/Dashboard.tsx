@@ -4,6 +4,8 @@ import { userLogout } from "../../utils/globalUtility";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Board from "../Board/Board";
+import TableComponent from "../Table/Table";
+import CalenderData from "../Calender/Calender";
 import "./Dashboard.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "./../../store/UserInfo/actions";
@@ -16,6 +18,18 @@ const items = [
     key: "board",
     icon: "fa fa-tasks",
   },
+  {
+    name: "Table",
+    href: "/table",
+    key: "table",
+    icon: "fa fa-table",
+  },
+  {
+    name: "Calender",
+    href: "/calender",
+    key: "calender",
+    icon: "fa fa-calendar",
+  },
 ];
 
 const Dashboard = () => {
@@ -25,6 +39,8 @@ const Dashboard = () => {
   const [addTodos, setAddTodos] = useState<any>([]);
   const [boardName, setBoardName] = useState<any>("");
   const [isBoard, setIsBoard] = useState<any>(true);
+  const [isTable, setIsTable] = useState<any>(false);
+  const [isCalender, setIsCalender] = useState<any>(false);
   const [sidebarMenu, setSidebarMenu] = useState<any>("");
 
   const { boardData } = useSelector(
@@ -97,6 +113,11 @@ const Dashboard = () => {
     // }
   };
 
+  const removeInputFields = (index: any, evnt: any) => {
+    const rows = [...addTodos];
+    dispatch(actions.removeBoard(rows[index].id))
+    window.location.reload();
+  };
 
   const navigateToScreen = (index: any, evnt: any, data: any) => {
     evnt.preventDefault();
@@ -115,6 +136,20 @@ const Dashboard = () => {
 
   const handleOpenBoard = () => {
     setIsBoard(true);
+    setIsTable(false);
+    setIsCalender(false);
+  };
+
+  const handleOpenTable = () => {
+    setIsBoard(false);
+    setIsTable(true);
+    setIsCalender(false);
+  };
+
+  const handleOpenCalender = () => {
+    setIsBoard(false);
+    setIsTable(false);
+    setIsCalender(true);
   };
 
   return (
@@ -125,6 +160,7 @@ const Dashboard = () => {
           addInputField={addInputField}
           updateInputFields={updateInputFields}
           editInputFields={editInputFields}
+          removeInputFields={removeInputFields}
           handleInputChange={handleInputChange}
           navigateToScreen={navigateToScreen}
         />
@@ -135,13 +171,21 @@ const Dashboard = () => {
             onLinkClick={(href) => {
               if (href === "/board") {
                 handleOpenBoard();
+              } else if (href === "/table") {
+                handleOpenTable();
+              } else if (href === "/calender") {
+                handleOpenCalender();
               }
             }}
             isBoard={isBoard}
+            isTable={isTable}
+            isCalender={isCalender}
           />
           {}
           <div className="content-container">
             {isBoard && <Board />}
+            {isTable && <TableComponent />}
+            {isCalender && <CalenderData />}
           </div>
         </div>
       </div>

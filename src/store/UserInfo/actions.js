@@ -278,6 +278,25 @@ export const getTodoDataBoardId = (boardId, userid) => {
   };
 };
 
+export const removeBoard = (boardId) => {
+  return (dispatch, getState) => {
+    axios
+      .delete(
+        `${BASE_URLS}/dashboard/removeBoard?boardId=${boardId}`
+      )
+      .then((response) => {
+        console.log(response)
+        if (response && response.status===200) {
+          toast.success("Board Deleted ..!");
+        } else {
+          toast.error("Something went wrong");
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+};
 
 
 //Update todo status

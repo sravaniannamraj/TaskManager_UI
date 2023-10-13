@@ -6,9 +6,11 @@ interface IProps {
   items: any
   onLinkClick: (href: string) => void;
   isBoard: boolean;
+  isTable: boolean;
+  isCalender: boolean;
 }
 const Header: React.FC<IProps> = (props: IProps) => {
-  const { items, onLinkClick,  isBoard} = props;
+  const { items, onLinkClick,  isBoard, isTable, isCalender } = props;
   
   const location = useLocation();
 
@@ -16,7 +18,7 @@ const Header: React.FC<IProps> = (props: IProps) => {
     onLinkClick(href); // Call the callback function in the parent component with the href value
   };
 
-  const tabItem = isBoard ? "Board"  : "";
+  const tabItem = isBoard ? "Board" : isTable ? "Table" : isCalender ? "Calender" : "";
 
   return (
     <nav className="navbar navbar-expand-lg navbarstyle">
