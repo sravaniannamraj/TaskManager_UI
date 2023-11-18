@@ -40,7 +40,7 @@ const LoginPage = () => {
   const validateForm = () => {
     let isValid = true;
     let errors = { username: "", password: "" };
-    const passwordRegex = /(?=.*[0-9])/;
+    //const passwordRegex = /(?=.*[0-9])/;
     const emailRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
     if (!username) {
       isValid = false;
@@ -54,9 +54,10 @@ const LoginPage = () => {
       errors.password = "Password is required";
     } else if (password.length < 8) {
       errors.password = "Password must be 8 characters long.";
-    } else if (!passwordRegex.test(password)) {
-      errors.password = "Invalid password. Must contain one number.";
-    }
+    } 
+    // else if (!passwordRegex.test(password)) {
+    //   errors.password = "Invalid password. Must contain one number.";
+    // }
 
     return { isValid, errors };
   };

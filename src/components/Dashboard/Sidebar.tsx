@@ -86,7 +86,7 @@ const Sidebar: React.FC<IProps> = (props: IProps) => {
                   aria-expanded="false"
                 >
                   <img
-                    src="https://github.com/mdo.png"
+                    src="/login.jpg"
                     alt="hugenerd"
                     width="30"
                     height="30"

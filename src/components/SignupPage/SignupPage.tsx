@@ -11,6 +11,7 @@ import { Alert } from "react-bootstrap";
 import "./SignupPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "./../../store/UserInfo/actions";
+import LoginPage from "components/Login/LoginPage";
 
 const SignupPage: any = () => {
   const dispatch: any = useDispatch();
@@ -60,6 +61,7 @@ const SignupPage: any = () => {
       dispatch(actions.createUser(payload));
       if (isSuccessFullRegister) {
         setShowLoader(false);
+        return <LoginPage/>
       }
       // let response = await post(signup, JSON.stringify(payload));
       // setShowLoader(false);
@@ -86,7 +88,7 @@ const SignupPage: any = () => {
 
   const validateForm = () => {
     let errorObj: any = {};
-    const passwordRegex = /(?=.*[0-9])/;
+    //const passwordRegex = /(?=.*[0-9])/;
     const emailRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
     if (!fullname) {
       errorObj.fullname = "Full name is Required";
@@ -103,9 +105,10 @@ const SignupPage: any = () => {
       errorObj.password = "Password Required";
     } else if (password.length < 8) {
       errorObj.password = "Password must be 8 characters long.";
-    } else if (!passwordRegex.test(password)) {
-      errorObj.password = "Invalid password. Must contain one number.";
-    }
+    } 
+    // else if (!passwordRegex.test(password)) {
+    //   errorObj.password = "Invalid password. Must contain one number.";
+    // }
     if (!confirmPassword) {
       errorObj.confirmPassword = "Confirm password is required.";
     } else if (password !== confirmPassword) {
@@ -149,7 +152,7 @@ const SignupPage: any = () => {
         </div>
 
         <div className="mb-3 form-group">
-          <label className="form-label">Full Name</label>
+          <label className="form-label">Full Name *</label>
           <div className="input-container-style">
             {/* <BiUser className='input-icon-style' /> */}
             <input
@@ -165,7 +168,7 @@ const SignupPage: any = () => {
         </div>
 
         <div className="mb-3 form-group">
-          <label className="form-label">Contact</label>
+          <label className="form-label">Contact *</label>
           <div className="input-container-style">
             {/* <BiUser className='input-icon-style' /> */}
             <input
@@ -181,7 +184,7 @@ const SignupPage: any = () => {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Email</label>
+          <label className="form-label">Email *</label>
           <div className="input-container-style">
             {/* <BiUser className='input-icon-style' /> */}
             <input
@@ -197,7 +200,7 @@ const SignupPage: any = () => {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Password</label>
+          <label className="form-label">Password *</label>
           <div className="input-group">
             {/* <FiLock className='input-icon-style' /> */}
             <input
@@ -222,7 +225,7 @@ const SignupPage: any = () => {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Confirmation Password</label>
+          <label className="form-label">Confirmation Password *</label>
           <div className="input-group">
             {/* <FiLock className='input-icon-style' /> */}
             <input
