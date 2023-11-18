@@ -52,6 +52,7 @@ const Sidebar: React.FC<IProps> = (props: IProps) => {
       sessionStorage.removeItem("userInfo");
       sessionStorage.clear();
       navigate("/login");
+      window.location.reload();
     }
     if (option === "change-password") {
       navigate("/change-password");

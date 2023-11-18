@@ -11,7 +11,7 @@ import { Alert } from "react-bootstrap";
 import "./SignupPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "./../../store/UserInfo/actions";
-import LoginPage from "components/Login/LoginPage";
+
 
 const SignupPage: any = () => {
   const dispatch: any = useDispatch();
@@ -61,8 +61,7 @@ const SignupPage: any = () => {
       dispatch(actions.createUser(payload));
       if (isSuccessFullRegister) {
         setShowLoader(false);
-        return <LoginPage/>
-      }
+              }
       // let response = await post(signup, JSON.stringify(payload));
       // setShowLoader(false);
       // if (response && response.statusText == 'OK' && response.status === 200) {
