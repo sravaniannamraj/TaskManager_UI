@@ -102,6 +102,7 @@ const Dashboard = () => {
     };
     dispatch(actions.addBoardName(addedname));
     setAddTodos(rows);
+    window.location.reload();
   };
 
   const editInputFields = (index: any, evnt: any, data: any) => {
